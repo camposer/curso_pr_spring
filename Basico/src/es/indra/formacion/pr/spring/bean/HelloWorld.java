@@ -1,15 +1,15 @@
 package es.indra.formacion.pr.spring.bean;
 
-public class HolaMundo implements IHolaMundo {
+public class HelloWorld implements IHolaMundo {
 	private Dato dato;
 	
-	public HolaMundo() {
-		System.out.println("Creando HolaMundo...");
+	public HelloWorld() {
+		System.out.println("Creating HelloWold...");
 	}
 	
 	@Override
 	public void imprimir() {
-		System.out.println("Hola " + dato.getContenido());
+		System.out.println("Hello " + dato.getContenido());
 	}
 
 	@Override
@@ -21,4 +21,5 @@ public class HolaMundo implements IHolaMundo {
 	public Dato getDato() {
 		return dato;
 	}
+
 }
