@@ -1,0 +1,13 @@
+#tablaArticulo td:nth-child(2), #tablaArticulo td:nth-child(3) {
+	text-align: center;
+}
+
+#tablaArticulo tr:last-child td {
+	text-align: center;
+}
+
+input[name=cantidad] {
+	text-align: center;
+	width: 3em;
+}
+
