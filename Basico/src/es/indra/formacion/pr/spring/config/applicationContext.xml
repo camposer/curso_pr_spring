@@ -56,5 +56,30 @@
 		<property name="dato" ref="d3"/>
 	</bean>
 
+	<!-- Ejemplo factoría -->
+	<bean 
+			id="dato" 
+			class="es.indra.formacion.pr.spring.bean.Dato" 
+			scope="prototype">
+		<constructor-arg name="contenido" value="Mundo" />
+	</bean>
+
+	<bean id="dao" 
+		class="es.indra.formacion.pr.spring.bean.Dao" 
+		scope="prototype">
+		<property name="dato" ref="dato"/>
+	</bean>
+	
+	<bean id="daoFactory" 
+		class="es.indra.formacion.pr.spring.bean.DaoFactory" 
+		scope="singleton">
+		
+	</bean>
+
+	<bean id="servicio" 
+		class="es.indra.formacion.pr.spring.bean.Servicio" 
+		scope="singleton">
+		<property name="daoFactory" ref="daoFactory"/>
+	</bean>
 
 </beans>

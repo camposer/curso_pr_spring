@@ -5,6 +5,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import es.indra.formacion.pr.spring.bean.Dato;
 import es.indra.formacion.pr.spring.bean.IHolaMundo;
+import es.indra.formacion.pr.spring.bean.Servicio;
 
 public class Test {
 	public static void main(String[] args) {
@@ -51,5 +52,10 @@ public class Test {
 		
 		IHolaMundo hm8 = context.getBean("holaMundo5", IHolaMundo.class);
 		hm8.imprimir(); // => Hola Mundo
+	
+		/******************+ EJEMPLO DE FACTORIA *****************/
+		Servicio servicio = context.getBean("servicio", Servicio.class);
+		System.out.println("contenido = " + servicio.getContenido());
+		
 	}
 }
