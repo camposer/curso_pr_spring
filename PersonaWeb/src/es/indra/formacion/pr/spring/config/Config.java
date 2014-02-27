@@ -26,7 +26,7 @@ public class Config {
 		return new OrdenadorService();
 	}
 
-	@Bean(initMethod = "init")
+	@Bean
 	public IPersonaService personaService() {
 		return new PersonaService();
 	}
@@ -41,6 +41,7 @@ public class Config {
 		return new OrdenadorDao();
 	}
 
+	/*
 	@Bean
 	public EntityManagerFactory entityManagerFactory() {
 		return Persistence.createEntityManagerFactory("PersonaJpa");
@@ -50,14 +51,6 @@ public class Config {
 	public EntityManager entityManager() {
 		return entityManagerFactory()
 				.createEntityManager();
-	}
-
-	/*
-	@Bean
-	public PlatformTransactionManager transactionManager() {
-		JpaTransactionManager txManager = new JpaTransactionManager();
-		txManager.setEntityManagerFactory(entityManagerFactory());
-		return txManager;
 	}
 	*/
 }

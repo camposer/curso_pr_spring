@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import es.indra.formacion.pr.spring.service.IPersonaService;
-import es.indra.formacion.pr.spring.service.PersonaServiceFactory;
+import es.indra.formacion.pr.spring.util.Contexto;
 
 
 /**
@@ -31,7 +31,7 @@ public class PrincipalPersonaServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		IPersonaService personaService = PersonaServiceFactory.createPersonaService();
+		IPersonaService personaService = Contexto.getInstance().getBean("personaService", IPersonaService.class);
 		
 		request.setAttribute("personas", personaService.obtenerPersonas());
 		getServletContext()

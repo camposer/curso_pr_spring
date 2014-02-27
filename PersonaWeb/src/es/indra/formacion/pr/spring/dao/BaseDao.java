@@ -5,10 +5,7 @@ import java.lang.reflect.Type;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
-import javax.persistence.PersistenceException;
 import javax.persistence.Query;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,10 +17,9 @@ public abstract class BaseDao<T, K> implements IDao<T, K> {
 	@PersistenceContext // Le dice a Spring que gestione el EntityManager
 	protected EntityManager em;
 	protected Class<T> clase;
-	protected boolean autoCommit;
 	
 	@SuppressWarnings("unchecked")
-	public BaseDao(boolean autoCommit) {
+	public BaseDao() {
 		Type type = this.getClass().getGenericSuperclass();
 
 	    if (type instanceof ParameterizedType) {
@@ -31,39 +27,11 @@ public abstract class BaseDao<T, K> implements IDao<T, K> {
 	        Type[] fieldArgTypes = pt.getActualTypeArguments();
 	        clase = (Class<T>) fieldArgTypes[0];
 	    }
-	    
-	    this.autoCommit = autoCommit;
-	}
-	
-	public BaseDao() {
-		this(true);
-	}
-	
-	@Override
-	protected void finalize() throws Throwable {
-		if (em != null)
-			em.close();
 	}
 	
 	@Override
 	public void agregar(T obj) {
-		EntityTransaction et = null;
-		try {
-			if (autoCommit) {
-				et = em.getTransaction();
-				et.begin();
-			}
-
-			em.persist(obj);
-
-			if (autoCommit)
-				et.commit();
-		} catch (PersistenceException e) {
-			if (et != null && autoCommit)
-				et.rollback();
-			else if (!autoCommit)
-				throw e;
-		} 
+		em.persist(obj);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -75,46 +43,14 @@ public abstract class BaseDao<T, K> implements IDao<T, K> {
 
 	@Override
 	public void modificar(T obj) {
-		EntityTransaction et = null;
-		try {
-			if (autoCommit) {
-				et = em.getTransaction();
-				et.begin();
-			}
-
-			em.merge(obj);
-
-			if (autoCommit)
-				et.commit();
-		} catch (PersistenceException e) {
-			if (et != null && autoCommit)
-				et.rollback();
-			else if (!autoCommit)
-				throw e;
-		} 
+		em.merge(obj);
 	}
 
 	@Override
 	public void eliminar(K clave) {
-		EntityTransaction et = null;
-		try {
-			if (autoCommit) {
-				et = em.getTransaction();
-				et.begin();
-			}
-
-			Query q = em.createQuery("delete from " + clase.getSimpleName() + " where id = :id");
-			q.setParameter("id", clave);
-			q.executeUpdate();
-			
-			if (autoCommit)
-				et.commit();
-		} catch (PersistenceException e) {
-			if (et != null && autoCommit)
-				et.rollback();
-			else if (!autoCommit)
-				throw e;
-		} 
+		Query q = em.createQuery("delete from " + clase.getSimpleName() + " where id = :id");
+		q.setParameter("id", clave);
+		q.executeUpdate();
 	}
 
 	@Override
@@ -125,12 +61,6 @@ public abstract class BaseDao<T, K> implements IDao<T, K> {
 	@Override
 	public void setEntityManager(EntityManager em) {
 		this.em = em;
-	}
-
-	public static EntityManager createEntityManager() {
-		return Persistence
-				.createEntityManagerFactory("PersonaJpa")
-				.createEntityManager();
 	}
 
 }

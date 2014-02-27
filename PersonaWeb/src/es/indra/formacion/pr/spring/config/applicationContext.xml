@@ -15,9 +15,22 @@
 	<context:component-scan 
 		base-package="es.indra.formacion.pr.spring.config"/>
 
-	<!-- bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean">
+	<bean 
+			id="entityManagerFactory" 
+			class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean">
 		<property name="persistenceUnitName" value="PersonaJpa" />
 	</bean>
 	
-	<bean id="entityManager" factory-bean="entityManagerFactory" factory-method="createEntityManager"/-->
+	<bean
+			id="entityManager"
+			factory-bean="entityManagerFactory"
+			factory-method="createEntityManager"/>
+	
+	<bean 
+			id="transactionManager" 
+			class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="entityManagerFactory" />
+	</bean>
+	
+	<tx:annotation-driven transaction-manager="transactionManager"/>
 </beans>

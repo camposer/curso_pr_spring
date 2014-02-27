@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import es.indra.formacion.pr.persistence.model.Ordenador;
 import es.indra.formacion.pr.persistence.model.Persona;
 import es.indra.formacion.pr.spring.service.IPersonaService;
-import es.indra.formacion.pr.spring.service.PersonaServiceFactory;
+import es.indra.formacion.pr.spring.util.Contexto;
 
 /**
  * Servlet implementation class AgregarPersonaServlet
@@ -36,7 +36,7 @@ public class AgregarPersonaServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		IPersonaService personaService = PersonaServiceFactory.createPersonaService();
+		IPersonaService personaService = Contexto.getInstance().getBean("personaService", IPersonaService.class);
 		
 		String nombre = request.getParameter("nombre");
 		String apellido = request.getParameter("apellido");

@@ -56,7 +56,7 @@
 		List<Ordenador> ordenadores = (List<Ordenador>)request.getAttribute("ordenadores");
 		if (ordenadores != null) for (Ordenador o : ordenadores) {
 			String propietario = "";
-			Persona p = o.getPersona();
+			Persona p = o.getPersona(); // Esto falla contra objetos normales de Hibernate
 			if (p != null)
 				propietario = p.getNombre() + " " + p.getApellido();
 		%>
