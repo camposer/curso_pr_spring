@@ -72,19 +72,20 @@ public class AgregarCarritoServlet extends HttpServlet {
 
 				if (prod == null) { // Debo agregar el producto
 					try {
-						Producto p = productoService.obtenerProducto(id); // Buscando el producto
+						es.indra.formacion.pr.spring.model.Producto pModel = 
+								productoService.obtenerProducto(id); // Buscando el producto
 
-						if (p == null) // SI el producto no existe ignoralo
+						if (pModel == null) // SI el producto no existe ignoralo
 							continue;
 
 						// Clonando objeto
 						prod = new Producto();
-						prod.setId(p.getId());
-						prod.setNombre(p.getNombre());
-						prod.setPrecio(p.getPrecio());
+						prod.setId(pModel.getId());
+						prod.setNombre(pModel.getNombre());
+						prod.setPrecio(pModel.getPrecio());
 						prod.setCantidad(cantidad);
 
-						productos.put(p.getId(), prod); // Agregando al hashtable
+						productos.put(pModel.getId(), prod); // Agregando al hashtable
 					} catch (EmarketServiceException e) {
 						e.printStackTrace();
 					}

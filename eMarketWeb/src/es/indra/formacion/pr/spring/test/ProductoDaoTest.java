@@ -4,6 +4,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
+import es.indra.formacion.pr.spring.dao.IProductoDao;
+import es.indra.formacion.pr.spring.dao.ProductoDaoJpa;
 import es.indra.formacion.pr.spring.model.Producto;
 
 public class ProductoDaoTest {
@@ -16,10 +18,13 @@ public class ProductoDaoTest {
 		et.begin();
 		
 		// Agregando
-		em.persist(new Producto("Portátiles", 599f));
-		em.persist(new Producto("Cámaras", 230f));
-		em.persist(new Producto("DVD", 60f));
-		em.persist(new Producto("Teléfono", 500f));
+		IProductoDao productoDao = new ProductoDaoJpa();
+		((ProductoDaoJpa)productoDao).setEntityManager(em);
+		
+		productoDao.agregar(new Producto("Portátiles", 599f));
+		productoDao.agregar(new Producto("Cámaras", 230f));
+		productoDao.agregar(new Producto("DVD", 60f));
+		productoDao.agregar(new Producto("Teléfono", 500f));
 		
 		// Consultando
 		System.out.println(em.createQuery("from Producto").getResultList());

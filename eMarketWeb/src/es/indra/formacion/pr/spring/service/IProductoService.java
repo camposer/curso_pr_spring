@@ -3,7 +3,7 @@ package es.indra.formacion.pr.spring.service;
 import java.util.List;
 
 import es.indra.formacion.pr.spring.exception.EmarketServiceException;
-import es.indra.formacion.pr.spring.to.Producto;
+import es.indra.formacion.pr.spring.model.Producto;
 
 public interface IProductoService {
 	public void agregarProducto(Producto p) throws EmarketServiceException;

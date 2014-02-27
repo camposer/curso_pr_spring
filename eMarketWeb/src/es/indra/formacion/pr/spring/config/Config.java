@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import es.indra.formacion.pr.spring.dao.IProductoDao;
+import es.indra.formacion.pr.spring.dao.ProductoDaoJpa;
 import es.indra.formacion.pr.spring.dao.ProductoDaoMockup;
 import es.indra.formacion.pr.spring.service.IProductoService;
 import es.indra.formacion.pr.spring.service.ProductoService;
@@ -18,13 +19,10 @@ public class Config {
 	 */
 	@Bean
 	public IProductoDao productoDao() {
-		return new ProductoDaoMockup();
+		return new ProductoDaoJpa();
 	}
 	
-	//@Bean(initMethod="init")
 	@Bean
-	//@Scope("prototype")
-	//@Lazy
 	public IProductoService productoService() {
 		return new ProductoService();
 	}

@@ -3,18 +3,19 @@ package es.indra.formacion.pr.spring.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
 import es.indra.formacion.pr.spring.dao.IProductoDao;
 import es.indra.formacion.pr.spring.exception.EmarketServiceException;
-import es.indra.formacion.pr.spring.to.Producto;
+import es.indra.formacion.pr.spring.model.Producto;
 
+@Transactional
 public class ProductoService implements IProductoService {
-	// Inyectado automáticamente por el contexto
 	@Autowired 
 	private IProductoDao productoDao;
 	
 	@Override
-	public void agregarProducto(Producto p) throws EmarketServiceException {
+	public void agregarProducto(Producto p) {
 		productoDao.agregar(p);
 	}
 

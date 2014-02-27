@@ -5,7 +5,7 @@ import java.util.List;
 
 import es.indra.formacion.pr.spring.to.Producto;
 
-public class ProductoDaoMockup implements IProductoDao {
+public class ProductoDaoMockup { //implements IProductoDao {
 	private List<Producto> productos = new ArrayList<Producto>();
 	private int contador = 0;
 	
@@ -16,12 +16,10 @@ public class ProductoDaoMockup implements IProductoDao {
 		agregar(new Producto("Teléfono", 500f));
 	}
 	
-	@Override
 	public List<Producto> obtenerTodos() {
 		return productos;
 	}
 
-	@Override
 	public void agregar(Producto p) {
 		contador++;
 		p.setId(contador);
@@ -37,7 +35,6 @@ public class ProductoDaoMockup implements IProductoDao {
 		return -1;
 	}
 	
-	@Override
 	public Producto obtener(Integer id) {
 		int pos = buscarPos(id);
 		
@@ -47,7 +44,6 @@ public class ProductoDaoMockup implements IProductoDao {
 			return null;
 	}
 
-	@Override
 	public void modificar(Producto p) {
 		int pos = buscarPos(p.getId());
 		
@@ -55,7 +51,6 @@ public class ProductoDaoMockup implements IProductoDao {
 			productos.set(pos, p);
 	}
 
-	@Override
 	public void eliminar(Integer id) {
 		int pos = buscarPos(id);
 		

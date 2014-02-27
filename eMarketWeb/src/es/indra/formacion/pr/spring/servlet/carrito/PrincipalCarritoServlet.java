@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import es.indra.formacion.pr.spring.exception.EmarketServiceException;
 import es.indra.formacion.pr.spring.service.IProductoService;
-import es.indra.formacion.pr.spring.to.Producto;
+import es.indra.formacion.pr.spring.model.Producto;
 import es.indra.formacion.pr.spring.util.Contexto;
 
 /**

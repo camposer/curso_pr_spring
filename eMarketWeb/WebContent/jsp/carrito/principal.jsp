@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="es.indra.formacion.pr.spring.to.Producto" %>
+<%@ page import="es.indra.formacion.pr.spring.model.Producto" %>
 <%@ page import="java.util.List" %>
 
 <%@ include file="cabecera.jsp" %>
