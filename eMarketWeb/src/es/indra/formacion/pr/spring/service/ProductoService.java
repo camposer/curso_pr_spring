@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import es.indra.formacion.pr.spring.dao.IProductoDao;
-import es.indra.formacion.pr.spring.exception.EmarketDaoException;
 import es.indra.formacion.pr.spring.exception.EmarketServiceException;
 import es.indra.formacion.pr.spring.to.Producto;
 
@@ -16,47 +15,27 @@ public class ProductoService implements IProductoService {
 	
 	@Override
 	public void agregarProducto(Producto p) throws EmarketServiceException {
-		try {
-			productoDao.agregar(p);
-		} catch (EmarketDaoException e) {
-			throw new EmarketServiceException("Error al agregar Producto: " + p, e); 
-		}
+		productoDao.agregar(p);
 	}
 
 	@Override
 	public List<Producto> obtenerProductos() throws EmarketServiceException {
-		try {
-			return productoDao.obtenerTodos();
-		} catch (EmarketDaoException e) {
-			throw new EmarketServiceException("Error al obtener Productos", e); 
-		}
+		return productoDao.obtenerTodos();
 	}
 
 	@Override
 	public Producto obtenerProducto(Integer id) throws EmarketServiceException {
-		try {
-			return productoDao.obtener(id);
-		} catch (EmarketDaoException e) {
-			throw new EmarketServiceException("Error al obtener el Producto con id = " + id, e); 
-		}
+		return productoDao.obtener(id);
 	}
 
 	@Override
 	public void eliminarProducto(Integer id) throws EmarketServiceException {
-		try {
-			productoDao.eliminar(id);
-		} catch (EmarketDaoException e) {
-			throw new EmarketServiceException("Error al eliminar el Producto con id = " + id, e); 
-		}
+		productoDao.eliminar(id);
 	}
 
 	@Override
 	public void modificarProducto(Producto p) throws EmarketServiceException {
-		try {
-			productoDao.modificar(p);
-		} catch (EmarketDaoException e) {
-			throw new EmarketServiceException("Error al modificar Producto: " + p, e); 
-		}
+		productoDao.modificar(p);
 	}
 
 	public void setProductoDao(IProductoDao productoDao) {

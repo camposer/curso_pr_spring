@@ -25,7 +25,10 @@ public class Producto implements Serializable {
 	@Column(nullable=false)
 	private Float precio;
 	
-	public Producto() {
+	public Producto() {}
+	public Producto(String nombre, Float precio) {
+		this.nombre = nombre;
+		this.precio = precio;
 	}
 
 	public Integer getId() {
@@ -51,5 +54,9 @@ public class Producto implements Serializable {
 	public void setPrecio(Float precio) {
 		this.precio = precio;
 	}
-
+	@Override
+	public String toString() {
+		return "Producto [id=" + id + ", nombre=" + nombre + ", precio="
+				+ precio + "]";
+	}
 }

@@ -3,7 +3,6 @@ package es.indra.formacion.pr.spring.dao;
 import java.util.ArrayList;
 import java.util.List;
 
-import es.indra.formacion.pr.spring.exception.EmarketDaoException;
 import es.indra.formacion.pr.spring.to.Producto;
 
 public class ProductoDaoMockup implements IProductoDao {
@@ -39,7 +38,7 @@ public class ProductoDaoMockup implements IProductoDao {
 	}
 	
 	@Override
-	public Producto obtener(Integer id) throws EmarketDaoException {
+	public Producto obtener(Integer id) {
 		int pos = buscarPos(id);
 		
 		if (pos >= 0)
@@ -49,7 +48,7 @@ public class ProductoDaoMockup implements IProductoDao {
 	}
 
 	@Override
-	public void modificar(Producto p) throws EmarketDaoException {
+	public void modificar(Producto p) {
 		int pos = buscarPos(p.getId());
 		
 		if (pos >= 0)
@@ -57,7 +56,7 @@ public class ProductoDaoMockup implements IProductoDao {
 	}
 
 	@Override
-	public void eliminar(Integer id) throws EmarketDaoException {
+	public void eliminar(Integer id) {
 		int pos = buscarPos(id);
 		
 		if (pos >= 0)
