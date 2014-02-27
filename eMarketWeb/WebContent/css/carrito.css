@@ -1,0 +1,52 @@
+			#tablaCarrito td:nth-child(2),
+			#tablaCarrito td:nth-child(3),
+			#tablaCarrito td:nth-child(4) {
+				text-align: center;
+			}
+		
+			#tablaCarrito tr:last-child td {
+				text-align: center;
+			}
+
+			input[name=cantidad] {
+				text-align: center;
+				width: 3em;
+			}
+
+			input[name=precio] {
+				text-align: center;
+				width: 5em;
+			}
+
+			.total td:nth-child(1) {
+				text-align: right;
+			}
+
+			.total td:nth-child(2) {
+				text-align: center;
+			}
+
+			.total > td > input { /* El hijo directo de...*/
+				text-align: center;
+				width: 5em;
+			}
+
+			#tablaCarrito tr:nth-child(even) td {
+				background-color: lightgreen;
+			}
+
+			#tablaCarrito tr:nth-child(odd) td {
+				background-color: lightblue;
+			}
+
+			.total td {
+				background-color: lightgray !important;
+			}
+
+			#tablaCarrito tr:last-child td {
+				background-color: transparent !important;
+			}
+
+#tablaCarrito .eliminar {
+	text-align: center;
+}
