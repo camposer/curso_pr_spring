@@ -16,7 +16,7 @@
 		base-package="es.indra.formacion.pr.spring.config"/>
 
 	<!-- Configuración de EntityManager y Transacciones -->
-	<bean 
+	<!--bean 
 			id="entityManagerFactory" 
 			class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean">
 		<property name="persistenceUnitName" value="eMarketWeb" />
@@ -33,5 +33,5 @@
 		<property name="entityManagerFactory" ref="entityManagerFactory" />
 	</bean>
 	
-	<tx:annotation-driven transaction-manager="transactionManager"/>
+	<tx:annotation-driven transaction-manager="transactionManager"/-->
 </beans>
