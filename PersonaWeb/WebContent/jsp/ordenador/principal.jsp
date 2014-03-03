@@ -12,7 +12,7 @@
 <body>
 	<h1>Ordenadores</h1>
 	
-	<form action="Agregar" method="post">
+	<form action="agregar.do" method="post">
 		<table>
 			<tr>
 				<td>Nombre:</td>
