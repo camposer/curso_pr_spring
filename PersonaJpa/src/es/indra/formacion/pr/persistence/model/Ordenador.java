@@ -29,7 +29,7 @@ public class Ordenador implements Serializable {
 
 	@Column(nullable=false, length=50)
 	private String serial;
-
+	
 	//bi-directional many-to-one association to Persona
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="PERSONA_ID", nullable=false)

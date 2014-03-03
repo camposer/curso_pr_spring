@@ -1,4 +1,4 @@
-package es.indra.formacion.pr.spring.controller;
+package es.indra.formacion.pr.spring.front.controller;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import es.indra.formacion.pr.persistence.model.Ordenador;
 import es.indra.formacion.pr.persistence.model.Persona;
-import es.indra.formacion.pr.spring.editor.DobleEditor;
-import es.indra.formacion.pr.spring.editor.FechaEditor;
+import es.indra.formacion.pr.spring.front.editor.NumeroEditor;
+import es.indra.formacion.pr.spring.front.editor.FechaEditor;
 import es.indra.formacion.pr.spring.service.IPersonaService;
 
 @Controller
@@ -30,7 +30,7 @@ public class PersonaController {
 	public void initBinder(WebDataBinder binder) {
 		binder.registerCustomEditor(Date.class, fechaEditor); // Manejado por
 																// Spring
-		binder.registerCustomEditor(Double.class, new DobleEditor());
+		binder.registerCustomEditor(Double.class, new NumeroEditor(Double.class));
 	}
 
 	@RequestMapping(value = { "principal", "" })

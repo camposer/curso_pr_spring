@@ -10,5 +10,5 @@
 	<context:annotation-config/><!-- Activa anotaciones en Spring -->
 	<context:spring-configured/><!-- Activa ID por Autowired -->
 	<context:component-scan 
-		base-package="es.indra.formacion.pr.spring.controller,es.indra.formacion.pr.spring.editor"/>
+		base-package="es.indra.formacion.pr.spring.front.controller,es.indra.formacion.pr.spring.front.editor"/>
 </beans>

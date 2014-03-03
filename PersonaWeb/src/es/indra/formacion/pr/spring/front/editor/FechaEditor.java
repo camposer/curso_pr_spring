@@ -1,4 +1,4 @@
-package es.indra.formacion.pr.spring.editor;
+package es.indra.formacion.pr.spring.front.editor;
 
 import java.beans.PropertyEditorSupport;
 import java.text.ParseException;
