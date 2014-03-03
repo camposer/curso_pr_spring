@@ -1,9 +1,5 @@
 package es.indra.formacion.pr.spring.config;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -41,16 +37,4 @@ public class Config {
 		return new OrdenadorDao();
 	}
 
-	/*
-	@Bean
-	public EntityManagerFactory entityManagerFactory() {
-		return Persistence.createEntityManagerFactory("PersonaJpa");
-	}
-
-	@Bean
-	public EntityManager entityManager() {
-		return entityManagerFactory()
-				.createEntityManager();
-	}
-	*/
 }

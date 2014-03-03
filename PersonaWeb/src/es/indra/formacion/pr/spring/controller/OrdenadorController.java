@@ -6,6 +6,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -13,19 +14,20 @@ import es.indra.formacion.pr.persistence.model.Ordenador;
 import es.indra.formacion.pr.persistence.model.Persona;
 import es.indra.formacion.pr.spring.service.IOrdenadorService;
 import es.indra.formacion.pr.spring.service.IPersonaService;
-import es.indra.formacion.pr.spring.util.Contexto;
 
 @Controller
 @RequestMapping("/ordenador/*")
 public class OrdenadorController {
+	@Autowired
+	private IPersonaService personaService;
+	@Autowired
+	private IOrdenadorService ordenadorService;	
+	
 	@RequestMapping(value={"principal", ""})
 	public void principal(
 			HttpServletRequest request,
 			HttpServletResponse response) 
 					throws ServletException, IOException {
-		
-		IPersonaService personaService = Contexto.getInstance().getBean("personaService", IPersonaService.class);
-		IOrdenadorService ordenadorService = Contexto.getInstance().getBean("ordenadorService", IOrdenadorService.class);
 		
 		request.setAttribute("personas", personaService.obtenerPersonas());
 		//request.setAttribute("ordenadores", ordenadorService.obtenerOrdenadoresOrdenadosPorSerial());
@@ -43,8 +45,6 @@ public class OrdenadorController {
 			HttpServletResponse response) 
 					throws ServletException, IOException {
 		
-		IOrdenadorService ordenadorService = Contexto.getInstance().getBean("ordenadorService", IOrdenadorService.class);
-
 		String nombre = request.getParameter("nombre");
 		String serial = request.getParameter("serial");
 		String spersonaId = request.getParameter("personaId");
