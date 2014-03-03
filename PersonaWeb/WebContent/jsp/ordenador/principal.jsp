@@ -3,42 +3,40 @@
 <%@ page import="java.util.List" %>
 <%@ page import="es.indra.formacion.pr.persistence.model.Persona" %>
 <%@ page import="es.indra.formacion.pr.persistence.model.Ordenador" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Ordenadores</title>
+<title><spring:message code="ordenador.titulo"/></title>
 </head>
 <body>
-	<h1>Ordenadores</h1>
+	<h1><spring:message code="ordenador.titulo"/></h1>
 	
 	<form action="agregar.do" method="post">
 		<table>
 			<tr>
-				<td>Nombre:</td>
+				<td><spring:message code="ordenador.nombre"/>:</td>
 				<td><input type="text" name="nombre"/></td>
 			</tr>
 			<tr>
-				<td>Serial:</td>
+				<td><spring:message code="ordenador.serial"/>:</td>
 				<td><input type="text" name="serial"/></td>
 			</tr>
 			<tr>
-				<td>Propietario:</td>
+				<td><spring:message code="ordenador.propietario"/>:</td>
 				<td>
 					<select name="personaId">
-						<%
-						List<Persona> personas = (List<Persona>)request.getAttribute("personas");
-						if (personas != null) for (Persona p : personas) {
-						%>
-							<option value="<%= p.getId() %>"><%= p.getNombre() + " " + p.getApellido() %></option>
-						<%
-						}
-						%>
+						<c:forEach items="${personas}" var="p">
+							<option value="${p.id}">${p.nombre} ${p.apellido}</option>
+						</c:forEach>
 					</select>
 				</td>
 			</tr>
 			<tr>
-				<td colspan="2"><input type="submit" value="Agregar"/></td>
+				<td colspan="2"><input type="submit" value="<spring:message code="ordenador.boton.agregar"/>"/></td>
 			</tr>
 		</table>
 	</form>
@@ -47,27 +45,18 @@
 	
 	<table>
 		<tr>
-			<th>Nombre</th>
-			<th>Serial</th>
-			<th>Propietario</th>
+			<th><spring:message code="ordenador.nombre"/></th>
+			<th><spring:message code="ordenador.serial"/></th>
+			<th><spring:message code="ordenador.propietario"/></th>
 		</tr>
-			
-		<%
-		List<Ordenador> ordenadores = (List<Ordenador>)request.getAttribute("ordenadores");
-		if (ordenadores != null) for (Ordenador o : ordenadores) {
-			String propietario = "";
-			Persona p = o.getPersona(); // Esto falla contra objetos normales de Hibernate
-			if (p != null)
-				propietario = p.getNombre() + " " + p.getApellido();
-		%>
+		<c:forEach items="${ordenadores}" var="o">
+			<c:set var="propietario" value="${o.persona.nombre} ${o.persona.apellido}"/>			
 			<tr>
-				<td><%= o.getNombre() %></td>
-				<td><%= o.getSerial() %></td>
-				<td><%= propietario %></td>
+				<td>${o.nombre}</td>
+				<td>${o.serial}</td>
+				<td>${propietario}</td>
 			</tr>
-		<%
-		}
-		%>
+		</c:forEach>
 			
 	</table>
 </body>

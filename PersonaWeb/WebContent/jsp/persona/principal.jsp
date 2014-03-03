@@ -3,6 +3,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="es.indra.formacion.pr.persistence.model.Persona" %>
 <%@ page import="es.indra.formacion.pr.persistence.model.Ordenador" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html>
@@ -62,30 +63,23 @@
 			<th>Altura</th>
 			<th>Ordenadores</th>
 		</tr>
-	<%
-	List<Persona> personas = (List<Persona>)request.getAttribute("personas");
-	if (personas != null) for (Persona p : personas) {
-	%>
+
+	<c:forEach items="${personas}" var="p">
 		<tr>
-			<td><%= p.getNombre() %></td>
-			<td><%= p.getApellido() %></td>
-			<td><%= p.getFechaNacimiento() %></td>
-			<td><%= p.getAltura() %></td>
+			<td>${p.nombre}</td>
+			<td>${p.apellido}</td>
+			<td><c:out value="${p.fechaNacimiento}" /></td>
+			<td>${p.altura}</td>
 			<td>
 				<ul>
-					<% 
-					if (p.getOrdenadores() != null) for (Ordenador o : p.getOrdenadores()) {
-					%>
-						<li><%= o.getNombre() + " " + o.getSerial() %></li>
-					<%
-					}
-					%>
+					<c:forEach items="${p.ordenadores}" var="o">
+						<!-- >li><c:out value="${o.nombre} ${o.serial}"/></li-->
+						<li>${o.nombre} ${o.serial}</li>
+					</c:forEach>
 				</ul>
 			</td>
 		</tr>
-	<%
-	}
-	%>
+	</c:forEach>
 	</table>
 </body>
 </html>

@@ -10,12 +10,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import es.indra.formacion.pr.persistence.model.Ordenador;
 import es.indra.formacion.pr.persistence.model.Persona;
 import es.indra.formacion.pr.spring.front.editor.NumeroEditor;
 import es.indra.formacion.pr.spring.front.editor.FechaEditor;
+import es.indra.formacion.pr.spring.front.form.PersonaForm;
 import es.indra.formacion.pr.spring.service.IPersonaService;
 
 @Controller
@@ -28,8 +28,7 @@ public class PersonaController {
 
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
-		binder.registerCustomEditor(Date.class, fechaEditor); // Manejado por
-																// Spring
+		binder.registerCustomEditor(Date.class, fechaEditor); // Manejado por Spring
 		binder.registerCustomEditor(Double.class, new NumeroEditor(Double.class));
 	}
 
@@ -41,21 +40,22 @@ public class PersonaController {
 	}
 
 	@RequestMapping("agregar")
-	public String agregar(@RequestParam String nombre,
-			@RequestParam String apellido, @RequestParam Date fechaNacimiento,
-			@RequestParam Double altura, @RequestParam String ordenadorNombre,
-			@RequestParam String ordenadorSerial) {
+	public String agregar(PersonaForm personaForm) {
 
 		// TODO: Incluir validaciones!
 
 		try {
-			Persona p = new Persona(nombre, apellido, fechaNacimiento, altura);
+			Persona p = new Persona(
+					personaForm.getNombre(), 
+					personaForm.getApellido(), 
+					personaForm.getFechaNacimiento(), 
+					personaForm.getAltura());
 
 			// Construir lista de ordenadores!
 			List<Ordenador> ordenadores = new ArrayList<Ordenador>();
 			Ordenador o = new Ordenador();
-			o.setNombre(ordenadorNombre);
-			o.setSerial(ordenadorSerial);
+			o.setNombre(personaForm.getOrdenadorNombre());
+			o.setSerial(personaForm.getOrdenadorSerial());
 			ordenadores.add(o);
 
 			p.setOrdenadores(ordenadores);
