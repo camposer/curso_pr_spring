@@ -27,12 +27,14 @@ public class OrdenadorController {
 	@Autowired
 	private IPersonaService personaService;
 	@Autowired
-	private IOrdenadorService ordenadorService;	
+	private IOrdenadorService ordenadorService;
+	@Autowired
+	private OrdenadorValidator ordenadorValidator;
 	
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
 		binder.registerCustomEditor(Integer.class, new NumeroEditor(Integer.class));
-		binder.setValidator(new OrdenadorValidator());
+		binder.setValidator(ordenadorValidator);
 	}
 	
 	@ModelAttribute("personas")
@@ -76,9 +78,12 @@ public class OrdenadorController {
 			o.setPersona(p);
 			
 			ordenadorService.agregarOrdenador(o);
-		}
-		
-		return "redirect:principal.do";
+
+			return "redirect:principal.do";
+		} 
+
+		return "forward:/jsp/ordenador/principal.jsp";
+
 	}
 	
 }

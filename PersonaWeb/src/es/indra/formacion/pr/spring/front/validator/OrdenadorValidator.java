@@ -12,7 +12,7 @@ public class OrdenadorValidator implements Validator {
 
 	@Override
 	public boolean supports(Class<?> clazz) {
-		return true;
+		return OrdenadorForm.class.equals(clazz);
 	}
 
 	@Override

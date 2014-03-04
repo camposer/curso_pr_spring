@@ -17,6 +17,7 @@
 	<h1><spring:message code="ordenador.titulo"/></h1>
 	
 		<form:form action="agregar.do" commandName="ordenadorForm" method="POST">
+		
 		<form:errors path="*" cssStyle="border: 1px solid red; color: red"/>
 		<table>
 			<tr>
@@ -38,7 +39,7 @@
 						</c:forEach>
 					</select>
 				</td>
-				<td><form:errors path="personaId" cssStyle="border: 1px solid red; color: red"/></td>
+				<td></td>
 			</tr>
 			<tr>
 				<td colspan="3"><input type="submit" value="<spring:message code="ordenador.boton.agregar"/>"/></td>
