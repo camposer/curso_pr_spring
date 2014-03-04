@@ -83,7 +83,6 @@ public class OrdenadorController {
 		} 
 
 		return "forward:/jsp/ordenador/principal.jsp";
-
 	}
 	
 }

@@ -1,6 +1,12 @@
 package es.indra.formacion.pr.spring.front.form;
 
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotEmpty;
+
 public class OrdenadorForm {
+	@NotNull
+	@NotEmpty
 	private String nombre;
 	private String serial;
 	private Integer personaId;

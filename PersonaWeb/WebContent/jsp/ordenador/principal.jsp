@@ -33,16 +33,29 @@
 			<tr>
 				<td><spring:message code="ordenador.propietario"/>:</td>
 				<td>
-					<select name="personaId">
+					<!-- form:select 
+						path="personaId" 
+						items="${personas}" 
+						itemLabel="nombre" 
+						itemValue="id"/-->
+
+					<select name="personaId">					
 						<c:forEach items="${personas}" var="p">
-							<option value="${p.id}">${p.nombre} ${p.apellido}</option>
+							<c:set var="selected" value=""/>
+							<c:if test="${p.id == ordenadorForm.personaId}">
+								<c:set var="selected" value="selected"/>
+							</c:if>
+						
+							<option value="${p.id}" ${selected}>${p.nombre} ${p.apellido}</option>
 						</c:forEach>
 					</select>
 				</td>
 				<td></td>
 			</tr>
 			<tr>
-				<td colspan="3"><input type="submit" value="<spring:message code="ordenador.boton.agregar"/>"/></td>
+				<td colspan="3">
+					<input type="submit" value="<spring:message code="ordenador.boton.agregar"/>"/>
+				</td>
 			</tr>
 		</table>
 	</form:form>

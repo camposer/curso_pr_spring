@@ -18,8 +18,9 @@ public class FechaEditor extends PropertyEditorSupport {
 		Date fecha = null;
 
 		try {
-			fecha = new SimpleDateFormat("yyyy-MM-dd").parse(text);
-		} catch (ParseException e) {}
+			if (text.matches("[0-9]{4}-[0-9]{2}-[0-9]{2}"))
+				fecha = new SimpleDateFormat("yyyy-MM-dd").parse(text);
+		} catch (ParseException | NullPointerException e) {}
 		 
 		setValue(fecha);
 	}
@@ -31,7 +32,7 @@ public class FechaEditor extends PropertyEditorSupport {
 	@Override
 	public String getAsText() {
 		if (getValue() != null && getValue() instanceof Date) 
-			return getValue().toString();
+			return new SimpleDateFormat("yyyy-MM-dd").format((Date)getValue());
 		else 
 			return "";
 	}
